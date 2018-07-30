@@ -1,0 +1,23 @@
+<% if @favor.errors.any? %>
+<ul>
+  <% @favor.errors.full_messages.each do |msg| %>
+  <li>
+    <%= msg %>
+  </li>
+  <% end %>
+</ul>
+<% end %>
+
+<%= form_for @favor do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  <br>
+  <%= f.label :description %>
+  <%= f.text_area :description %>
+  <br>
+  <%= f.label :date %>
+  <%= f.datetime_select :date %>
+  <br>
+  <%= f.submit %>
+
+<% end %>
