@@ -8,4 +8,9 @@
 
 j = User.create(first_name: "Jared", last_name: "Test", email: "ugh@gmail.com")
 m = User.create(first_name: "Matt", last_name: "Testo", email: "ugho@gmail.com")
-f = Favor.create(name: "Walk Dog", description: "walk my dog", date: Time.now)
+
+f = Favor.create(name: "Walk Dog", description: "walk my dog", date: Time.now, requester_id: 1)
+
+r = Review.create(title: "TERRIBLE", content: "TOTAL WITCH HUNT", rating: 0, favor_id: 1, user_id: 2)
+
+c = Comment.create(favor_id: 1, user_id: 1, content: "You're Putin's puppet!")
