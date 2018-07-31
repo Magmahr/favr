@@ -3,4 +3,14 @@
 <% @favors.each do |favor|%>
 <%= link_to favor.name, favor %>
 
+
 <% end %>
+
+<h1>unselected favors:</h1>
+<ul>
+  <% Favor.unselected_favors.each do |unselected_favor| %>
+  <li>
+    <%= link_to unselected_favor.name, unselected_favor %>
+  </li>
+  <% end %>
+</ul>

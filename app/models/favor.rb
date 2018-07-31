@@ -14,4 +14,12 @@ class Favor < ApplicationRecord
       errors.add(:date, "cannot be in the past")
     end
   end
+
+  def self.unselected_favors
+    user_favor_favor_ids = UserFavor.all.map {|user_favor| user_favor.favor_id}
+    self.all.reject do |favor|
+      user_favor_favor_ids.any? {|favor_id| favor_id == favor.id}
+    end
+  end
+
 end
