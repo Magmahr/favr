@@ -12,6 +12,6 @@ m = User.create(first_name: "Matt", last_name: "Testo", email: "ugho@gmail.com")
 
 
 
-r = Review.create(title: "TERRIBLE", content: "TOTAL WITCH HUNT", rating: 0, favor_id: 1, user_id: 2)
+r = Review.create(title: "TERRIBLE", content: "Unreliable at best", rating: 0, favor_id: 1, user_id: 2)
 
-c = Comment.create(favor_id: 1, user_id: 1, content: "You're Putin's puppet!")
+c = Comment.create(favor_id: 1, user_id: 1, content: "That's not a fair assessment")

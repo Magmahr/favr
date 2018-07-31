@@ -4,5 +4,5 @@ Rails.application.routes.draw do
   resources :users
 
   root "application#index"
-  post '/login', to: 'sessions#create'
+  post '/login', to: 'sessions#new'
 end

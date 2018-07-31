@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  # has_secure_password
   # has_many :user_favors
   has_many :requests, class_name: "UserFavor", foreign_key: "requester_id"
   has_many :fulfillments, class_name: "UserFavor", foreign_key: "requestee_id"
