@@ -8,7 +8,7 @@ class FavorsController < ApplicationController
   def show
     @favor = Favor.find(params[:id])
     favor_id = @favor.requester_id
-    @user = User.find_by(favor_id)
+    @user = User.find(favor_id)
   end
 
   def new
@@ -18,10 +18,12 @@ class FavorsController < ApplicationController
   def create
     @favor = Favor.new(favor_params)
     if @favor.save
+      @userfavor = UserFavor.create(user_favor_params)
       redirect_to @favor
     else
       render :new
     end
+
   end
 
   private
@@ -32,6 +34,10 @@ class FavorsController < ApplicationController
 
   def favor_params
     params.require(:favor).permit(:name, :description, :date, :requester_id)
+  end
+
+  def user_favor_params
+    params.require(:user_favor).permit(:id, :requester_id, :favor_id, :requestee_id)
   end
 
 
