@@ -8,7 +8,7 @@ class FavorsController < ApplicationController
   def show
     @favor = Favor.find(params[:id])
     favor_id = @favor.requester_id
-    @user = User.find_by(favor_id)
+    @user = User.find(favor_id)
   end
 
   def new

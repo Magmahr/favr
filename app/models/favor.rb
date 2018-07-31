@@ -6,7 +6,7 @@ class Favor < ApplicationRecord
 
   validates :name, presence: true
   validates :description, presence: true
-  validate :date_is_in_future
+  # validate :date_is_in_future
 
 
   def date_is_in_future
