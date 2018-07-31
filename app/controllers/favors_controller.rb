@@ -6,7 +6,7 @@ class FavorsController < ApplicationController
   end
 
   def show
-    #code
+  
   end
 
   def new
