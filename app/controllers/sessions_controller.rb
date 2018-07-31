@@ -1,18 +1,19 @@
 class SessionsController < ApplicationController
 
-  def new # renders form to create a new session
-   # new session means user is LOGGED IN
-   #code
+  def new
+   @user = User.new
    render :new
   end
 
-  def create # creates a new session
-     #code
+  def create
+    @user = User.find_by(email: params[:email])
+    session[:email] = params[:email]
+    redirect_to @user
   end
 
-  def create
-    byebug
-    @user = User.find_by(email: params[:email])
+  def destroy
+    session.delete :email
+    redirect_to :root
   end
 
 end

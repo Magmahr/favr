@@ -1,6 +1,7 @@
 <h1>LOGIN</h1>
 
-<%= form_tag sessions_path, method: :post do %>
-  <%= text_field_tag :username %>
-  <%= text_field_tag :password %>
+<%= form_tag "/login", method: :post do %>
+  <%= text_field_tag :email %>
+  <%# text_field_tag :password %>
+  <input type='submit' value='login'>
 <% end %>

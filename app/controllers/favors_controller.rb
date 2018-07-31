@@ -1,5 +1,6 @@
 class FavorsController < ApplicationController
-  # before_action :set_favor, only: [:show]
+  before_action :set_favor, only: [:show]
+  before_action :require_login
 
   def index
     @favors = Favor.all
@@ -16,9 +17,11 @@ class FavorsController < ApplicationController
   end
 
   def create
+    requester = User.find_by(email: session[:email])
     @favor = Favor.new(favor_params)
+    @favor.requester = requester
     if @favor.save
-      @userfavor = UserFavor.create(user_favor_params)
+      # @userfavor = UserFavor.create(user_favor_params)
       redirect_to @favor
     else
       render :new
@@ -40,5 +43,8 @@ class FavorsController < ApplicationController
     params.require(:user_favor).permit(:id, :requester_id, :favor_id, :requestee_id)
   end
 
+  def require_login
+    return redirect_to "/login" unless session.include? :email
+  end
 
 end

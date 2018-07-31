@@ -1,5 +1,15 @@
+<h1><%= @user.first_name %> needs a favr</h1>
+
 <h2><%= @favor.name %></h2>
 <p><%= @favor.description %></p>
-<p><%= link_to @user.email, @user %></p>
+<p>Date and Time: <%= @favor.date %></p>
+<!-- <p><%= link_to "See This User's Profile", @user %></p> -->
 
+<%= form_tag make_user_favor_path, method: :post do %>
+  <%= hidden_field_tag 'requester_id', @user.id  %>
+  <%= hidden_field_tag 'favor_id', @favor.id  %>
+  <%= submit_tag 'Do Favr' %>
+<% end %>
+<!-- <%= link_to "Do This Favr", make_user_favor_path, method: :post %> -->
+<br>
 <%= link_to "Back to All Favrs", favors_path %>

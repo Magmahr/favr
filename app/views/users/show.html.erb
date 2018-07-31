@@ -1,2 +1,12 @@
+<p id="notice"><%= notice %></p>
+
 <h1>Hello, <%= @user.first_name %></h1>
-<%= @review.rating %>
+
+<p><%= link_to "Do someone a Favr", favors_path %></p>
+
+<p><%= link_to "Ask for a Favr", new_favor_path %></p>
+
+
+<%= form_tag controller: "sessions", action: "destroy", method: "post" do %>
+  <input type="submit" value="Log Out">
+<% end %>
