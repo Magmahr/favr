@@ -1,12 +1,14 @@
 class FavorsController < ApplicationController
-  before_action :set_favor, only: [:show]
+  # before_action :set_favor, only: [:show]
 
   def index
     @favors = Favor.all
   end
 
   def show
-  
+    @favor = Favor.find(params[:id])
+    favor_id = @favor.requester_id
+    @user = User.find_by(favor_id)
   end
 
   def new

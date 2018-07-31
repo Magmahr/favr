@@ -1,4 +1,5 @@
 <h2><%= @favor.name %></h2>
 <p><%= @favor.description %></p>
+<p><%= link_to @user.email, @user %></p>
 
 <%= link_to "Back to All Favrs", favors_path %>
