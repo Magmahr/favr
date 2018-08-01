@@ -22,6 +22,15 @@ class UsersController < ApplicationController
     end
   end
 
+  def update
+    if @user.update(user_params)
+      flash[:notice] = "Profile Successfully Updated!"
+      redirect_to user_path
+    else
+      render :edit
+    end
+  end
+
   private
 
   def set_user

@@ -7,6 +7,11 @@ class User < ApplicationRecord
   has_many :reviews, through: :favors, dependent: :destroy
   has_many :comments, dependent: :destroy
 
+  validates :email, presence: true
+  validates :first_name, presence: true
+  validates :last_name, presence: true
+  validates :password, presence: true
+
   def full_name
     "#{self.first_name} #{self.last_name}"
   end
