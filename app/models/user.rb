@@ -11,4 +11,9 @@ class User < ApplicationRecord
     "#{self.first_name} #{self.last_name}"
   end
 
+  def accepted_favors
+    accepted_user_favors = UserFavor.select {|user_favor| user_favor.requestee_id == self.id}
+    accepted_user_favors.map {|user_favor| user_favor.favor}
+  end
+
 end

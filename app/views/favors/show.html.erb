@@ -1,3 +1,15 @@
+<ul>
+  <% if @user_favor.errors.any? %>
+    <% @user_favor.errors.full_messages.each do |msg| %>
+      <li>
+        <%= msg %>
+      </li>
+    <% end %>
+  <% end %>
+</ul>
+
+<h4><%= flash[:notice] %></h4>
+
 <h1><%= @user.first_name %> needs a favr</h1>
 
 <h2><%= @favor.name %></h2>

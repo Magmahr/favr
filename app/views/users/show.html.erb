@@ -6,6 +6,15 @@
 
 <p><%= link_to "Ask for a Favr", new_favor_path %></p>
 
+<h3>These are the Favrs that you have agreed to do:</h3>
+<ul>
+  <% @user.accepted_favors.each do |favor| %>
+    <li>
+      <%= link_to favor.name, favor %>
+    </li>
+  <% end %>
+</ul>
+
 
 <%= form_tag controller: "sessions", action: "destroy", method: "post" do %>
   <input type="submit" value="Log Out">

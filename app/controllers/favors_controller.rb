@@ -11,6 +11,7 @@ class FavorsController < ApplicationController
     @favor = Favor.find(params[:id])
     favor_id = @favor.requester_id
     @user = User.find(favor_id)
+    @user_favor = UserFavor.new(requester_id: @favor.requester_id, favor_id: @favor.id)
   end
 
   def new
@@ -18,7 +19,7 @@ class FavorsController < ApplicationController
   end
 
   def create
-    requester = User.find_by(email: session[:email])
+    requester = current_user
     @favor = Favor.new(favor_params)
     @favor.requester = requester
     if @favor.save
