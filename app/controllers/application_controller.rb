@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-before_action :authorized
+before_action :authorized, except: [:index]
 helper_method :logged_in?, :current_user
 
   def current_user
@@ -13,7 +13,7 @@ helper_method :logged_in?, :current_user
   def authorized
     unless logged_in?
       flash[:notice] = "Youse must be logged in to this page"
-      redirect_to "/login"
+      redirect_to "/"
     end
   end
 
