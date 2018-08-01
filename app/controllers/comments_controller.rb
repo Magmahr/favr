@@ -2,6 +2,7 @@ class CommentsController < ApplicationController
   skip_before_action :authorized, only: [:create]
 
   def create
+    
     # params["user_id"].to_i == session[:logged_in_user]
     favor_id = params[:favor_id].to_i
     @favor = Favor.find(favor_id)

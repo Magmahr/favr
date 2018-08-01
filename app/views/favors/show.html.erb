@@ -41,6 +41,29 @@
 <% end %>
 
 <br>
+<br>
+<% @favor.reviews.each do |review| %>
+  <%= review.user.first_name %> claims "<%= review.content %>"
+<br>
+<% end  %>
+<br>
+<%= form_tag post_review_path, method: :post do %>
+  <%= hidden_field_tag 'user_id', session[:logged_in_user]  %>
+  <%= hidden_field_tag 'favor_id', @favor.id  %>
+  <%= text_area_tag 'content' %>
+
+  <br>
+  <p>Rating</p>
+  1<%= radio_button_tag 'rating', '1' %>
+  2<%= radio_button_tag 'rating', '2' %>
+  3<%= radio_button_tag 'rating', '3' %>
+  4<%= radio_button_tag 'rating', '4' %>
+  5<%= radio_button_tag 'rating', '5' %>
+  <%= submit_tag 'Post Review' %>
+
+<% end %>
+  <br>
+
 <%= link_to "Back to Your Profile", current_user %>
 <br>
 <%= link_to "Back to All Favrs", favors_path %>
