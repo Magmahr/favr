@@ -6,7 +6,7 @@ class Favor < ApplicationRecord
 
   validates :name, presence: true
   validates :description, presence: true
-  # validate :date_is_in_future
+  validate :date_is_in_future
 
 
   def date_is_in_future
@@ -20,6 +20,10 @@ class Favor < ApplicationRecord
     self.all.reject do |favor|
       user_favor_favor_ids.any? {|favor_id| favor_id == favor.id}
     end
+  end
+
+  def parsed_datetime
+    self.date.strftime("%B %d, %Y at %H:%M")
   end
 
 end

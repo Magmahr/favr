@@ -1,0 +1,6 @@
+<%= form_tag post_comment_path, method: :post do %>
+  <%= hidden_field_tag 'user_id', @user.id  %>
+  <%= hidden_field_tag 'favor_id', @favor.id  %>
+
+  <%= submit_tag 'Post Comment' %>
+<% end %>

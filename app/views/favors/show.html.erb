@@ -14,14 +14,24 @@
 
 <h2><%= @favor.name %></h2>
 <p><%= @favor.description %></p>
-<p>Date and Time: <%= @favor.date %></p>
+<p>Date and Time: <%= @favor.parsed_datetime %></p>
 <!-- <p><%= link_to "See This User's Profile", @user %></p> -->
 
-<%= form_tag make_user_favor_path, method: :post do %>
-  <%= hidden_field_tag 'requester_id', @user.id  %>
-  <%= hidden_field_tag 'favor_id', @favor.id  %>
-  <%= submit_tag 'Do This Favr' %>
+<% unless UserFavor.any? {|user_favor| user_favor.favor_id == @favor.id} %>
+  <%= form_tag make_user_favor_path, method: :post do %>
+    <%= hidden_field_tag 'requester_id', @user.id  %>
+    <%= hidden_field_tag 'favor_id', @favor.id  %>
+    <%= submit_tag 'Do This Favr' %>
+  <% end %>
 <% end %>
 <!-- <%= link_to "Do This Favr", make_user_favor_path, method: :post %> -->
+
+
+<br>
+
+<%# render partial: "comment" %>
+
+<br>
+<%= link_to "Back to Your Profile", current_user %>
 <br>
 <%= link_to "Back to All Favrs", favors_path %>
