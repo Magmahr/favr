@@ -28,43 +28,47 @@
 
 
 <br>
-<% @favor.comments.each do |comment| %>
-  <%= comment.user.first_name %> says "<%= comment.content %>"
-<br>
-<% end  %>
-<br>
-<%= form_tag post_comment_path, method: :post do %>
-  <%= hidden_field_tag 'user_id', session[:logged_in_user]  %>
-  <%= hidden_field_tag 'favor_id', @favor.id  %>
-  <%= text_area_tag 'content' %>
-  <%= submit_tag 'Post Comment' %>
+<% if UserFavor.any? {|user_favor| user_favor.favor_id == @favor.id} %>
+  <% @favor.comments.each do |comment| %>
+    <%= comment.user.first_name %> says "<%= comment.content %>"
+  <br>
+  <% end  %>
+  <br>
+  <%= form_tag post_comment_path, method: :post do %>
+    <%= hidden_field_tag 'user_id', session[:logged_in_user]  %>
+    <%= hidden_field_tag 'favor_id', @favor.id  %>
+    <%= text_area_tag 'content' %>
+    <%= submit_tag 'Post Comment' %>
+  <% end %>
 <% end %>
 
 <br>
 <br>
-<h2>Reviews</h2>
-<br>
-<% @favor.reviews.each do |review| %>
-  <%= review.user.first_name %> claims "<%= review.content %>"
+<% if UserFavor.any? {|user_favor| user_favor.favor_id == @favor.id} %>
+  <h2>Reviews</h2>
   <br>
-  Rating: <%= review.rating %>/5
-<br><br>
-<% end  %>
-<br>
-<%= form_tag post_review_path, method: :post do %>
-  <%= hidden_field_tag 'user_id', session[:logged_in_user]  %>
-  <%= hidden_field_tag 'favor_id', @favor.id  %>
-  <%= text_area_tag 'content' %>
-
+  <% @favor.reviews.each do |review| %>
+    <%= review.user.first_name %> claims "<%= review.content %>"
+    <br>
+    Rating: <%= review.rating %>/5
+  <br><br>
+  <% end  %>
   <br>
-  <p>Rating</p>
-  1<%= radio_button_tag 'rating', '1' %>
-  2<%= radio_button_tag 'rating', '2' %>
-  3<%= radio_button_tag 'rating', '3' %>
-  4<%= radio_button_tag 'rating', '4' %>
-  5<%= radio_button_tag 'rating', '5' %>
-  <%= submit_tag 'Post Review' %>
+  <%= form_tag post_review_path, method: :post do %>
+    <%= hidden_field_tag 'user_id', session[:logged_in_user]  %>
+    <%= hidden_field_tag 'favor_id', @favor.id  %>
+    <%= text_area_tag 'content' %>
 
+    <br>
+    <p>Rating</p>
+    1<%= radio_button_tag 'rating', '1' %>
+    2<%= radio_button_tag 'rating', '2' %>
+    3<%= radio_button_tag 'rating', '3' %>
+    4<%= radio_button_tag 'rating', '4' %>
+    5<%= radio_button_tag 'rating', '5' %>
+    <%= submit_tag 'Post Review' %>
+
+  <% end %>
 <% end %>
   <br>
 
