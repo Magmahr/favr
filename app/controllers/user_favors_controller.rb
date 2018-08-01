@@ -10,7 +10,7 @@ class UserFavorsController < ApplicationController
   def create
     @user_favor = UserFavor.new(requester_id: params[:requester_id].to_i, requestee_id: current_user.id, favor_id: params[:favor_id].to_i)
     if @user_favor.save
-      redirect_to current_user, :flash => { :notice => "iou!" }
+      redirect_to favor_path(params[:favor_id].to_i), :flash => { :notice => "You've agreed to help out. You're a good person!" }
     else
       redirect_to favor_path(params[:favor_id].to_i)
     end

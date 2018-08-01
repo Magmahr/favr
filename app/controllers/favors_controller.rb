@@ -46,7 +46,7 @@ class FavorsController < ApplicationController
   end
 
   def require_login
-    return redirect_to "/login" unless session.include? :email
+    return redirect_to "/login" unless session.include? :logged_in_user
   end
 
 end

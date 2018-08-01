@@ -3,12 +3,9 @@ class CommentsController < ApplicationController
 
   def create
 
-    # params["user_id"].to_i == session[:logged_in_user]
-    # byebug
     favor_id = params[:favor_id].to_i
     @favor = Favor.find(favor_id)
     @user_favor = UserFavor.find_by(favor_id: params[:favor_id].to_i)
-    byebug
     @comment = Comment.new(comment_params)
     if params[:user_id].to_i == @user_favor.requester_id || params[:user_id].to_i == @user_favor.requestee_id && @comment.save
       redirect_to @comment.favor
