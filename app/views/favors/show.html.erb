@@ -42,9 +42,13 @@
 
 <br>
 <br>
+<h2>Reviews</h2>
+<br>
 <% @favor.reviews.each do |review| %>
   <%= review.user.first_name %> claims "<%= review.content %>"
-<br>
+  <br>
+  Rating: <%= review.rating %>/5
+<br><br>
 <% end  %>
 <br>
 <%= form_tag post_review_path, method: :post do %>

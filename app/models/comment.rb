@@ -2,6 +2,7 @@ class Comment < ApplicationRecord
   belongs_to :user
   belongs_to :favor
   # validate :only_participants_can_post
+  validates :content, presence: true
 
   def only_participants_can_post
     # byebug

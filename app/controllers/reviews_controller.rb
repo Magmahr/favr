@@ -6,16 +6,20 @@ class ReviewsController < ApplicationController
     @favor = Favor.find(favor_id)
     @user_favor = UserFavor.find_by(favor_id: params[:favor_id].to_i)
     @review = Review.new(review_params)
-
-    if params[:user_id].to_i == @user_favor.requester_id || params[:user_id].to_i == @user_favor.requestee_id && @review.save
+  
+    if params[:user_id].to_i == @user_favor.requester_id || params[:user_id].to_i == @user_favor.requestee_id && !already_exists?  && @review.save
       redirect_to @review.favor
     else
-      flash[:notice] = "You must be a party to this favor to review"
-      render favor_path(@favor)
+      flash[:notice] = "Your review could not be posted. Only those directly involved in a Favr can post a review. If you were involved in this Favr, please make sure that your review body and rating are not empty before posting your review."
+      redirect_to favor_path(@favor)
     end
   end
 
   private
+
+  def already_exists?
+    Review.all.any? {|review| review.favor_id == params[:favor_id].to_i && review.user_id == params[:user_id].to_i}
+  end
 
   def review_params
     params.permit(:user_id, :favor_id, :title, :content, :rating)
