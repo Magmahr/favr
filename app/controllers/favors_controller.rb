@@ -4,7 +4,7 @@ class FavorsController < ApplicationController
 
   def index
     @favors = Favor.all
-    @user = User.find_by(id: params[:id])
+    @user = User.find_by(id: session[:logged_in_user])
   end
 
   def show

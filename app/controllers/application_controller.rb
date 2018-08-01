@@ -11,7 +11,8 @@ helper_method :logged_in?, :current_user
   end
 
   def authorized
-    unless flash[:notice] = "Youse must be logged in to this page"
+    unless logged_in?
+      flash[:notice] = "Youse must be logged in to this page"
       redirect_to "/login"
     end
   end
