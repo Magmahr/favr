@@ -10,4 +10,5 @@ Rails.application.routes.draw do
   post "/login", to: 'sessions#create'
   post "/logout", to: "sessions#destroy"
   post '/make_user_favor', to: "user_favors#create"
+  post '/post_comment', to: "comments#create"
 end
