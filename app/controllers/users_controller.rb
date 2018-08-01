@@ -31,6 +31,12 @@ class UsersController < ApplicationController
     end
   end
 
+  def destroy
+    @user = User.find_by(id: session[:logged_in_user])
+    @user.delete
+    redirect_to "/"
+  end
+
   private
 
   def set_user
