@@ -12,7 +12,7 @@ helper_method :logged_in?, :current_user
 
   def authorized
     unless logged_in?
-      flash[:notice] = "Youse must be logged in to this page"
+      flash[:notice] = "You must be logged in to view this page."
       redirect_to "/"
     end
   end

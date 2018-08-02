@@ -1,12 +1,13 @@
 <p id="notice"><%= notice %></p>
 
 <h1><%= @user.first_name %>'s Page</h1>
+<p><%= @user.first_name %>'s Favrability rating: <%= @user.average_rating %>/5</p>
 
 <p><%= link_to "Do someone a Favr", favors_path %></p>
 
 <p><%= link_to "Ask for a Favr", new_favor_path %></p>
 
-<h3>These are the Favrs that you have agreed to do:</h3>
+<h3>These are the Favrs that <%= @user.first_name %> has agreed to do:</h3>
 <ul>
   <% @user.accepted_favors.each do |favor| %>
     <li>
