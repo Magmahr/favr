@@ -24,7 +24,7 @@ skip_before_action :authorized, only: [:new, :create]
 
   def destroy
     session.delete :logged_in_user
-    redirect_to "/login"
+    redirect_to "/"
   end
 
 end

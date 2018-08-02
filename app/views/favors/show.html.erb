@@ -10,12 +10,16 @@
 
 <h4><%= flash[:notice] %></h4>
 
-<h1><%= @user.first_name %> needs a favr</h1>
+  <h1 class="text-center"><%= @user.first_name %> needs a Favr</h1>
 
-<h2><%= @favor.name %></h2>
-<p><%= @favor.description %></p>
-<p>Date and Time: <%= @favor.parsed_datetime %></p>
-<!-- <p><%= link_to "See This User's Profile", @user %></p> -->
+<br>
+<br>
+
+<div class="text-center">
+  <h2 class="text-center"><%= @favor.name %></h2>
+  <p class="text-center"><%= @favor.description %></p>
+  <p class="text-center">Date and Time: <%= @favor.parsed_datetime %></p>
+<p class="text-center"><%= link_to "See This User's Profile", @user %></p>
 
 <% unless UserFavor.any? {|user_favor| user_favor.favor_id == @favor.id} %>
   <%= form_tag make_user_favor_path, method: :post do %>
@@ -24,13 +28,19 @@
     <%= submit_tag 'Do This Favr' %>
   <% end %>
 <% end %>
-<!-- <%= link_to "Do This Favr", make_user_favor_path, method: :post %> -->
-
+</div>
 
 <br>
+<br>
+<br>
+
+<div class="container">
+  <div class="row">
+  <div class="col">
 <% if UserFavor.any? {|user_favor| user_favor.favor_id == @favor.id} %>
+  <h2>Comments</h2>
   <% @favor.comments.each do |comment| %>
-    <%= comment.user.first_name %> says "<%= comment.content %>"
+    <%= link_to comment.user.first_name, comment.user %> says "<%= comment.content %>"
   <br>
   <% end  %>
   <br>
@@ -38,22 +48,28 @@
     <%= hidden_field_tag 'user_id', session[:logged_in_user]  %>
     <%= hidden_field_tag 'favor_id', @favor.id  %>
     <%= text_area_tag 'content' %>
+    <br>
     <%= submit_tag 'Post Comment' %>
   <% end %>
 <% end %>
+<br>
+<br>
+</div>
 
-<br>
-<br>
+<div class="col-6"></div>
+
+<div class="col">
 <% if UserFavor.any? {|user_favor| user_favor.favor_id == @favor.id} %>
   <h2>Reviews</h2>
   <br>
   <% @favor.reviews.each do |review| %>
-    <%= review.user.first_name %> claims "<%= review.content %>"
+    <%= link_to review.user.first_name, review.user %> claims "<%= review.content %>"
     <br>
     Rating: <%= review.rating %>/5
   <br><br>
   <% end  %>
   <br>
+
   <%= form_tag post_review_path, method: :post do %>
     <%= hidden_field_tag 'user_id', session[:logged_in_user]  %>
     <%= hidden_field_tag 'favor_id', @favor.id  %>
@@ -61,15 +77,18 @@
 
     <br>
     <p>Rating</p>
-    1<%= radio_button_tag 'rating', '1' %>
-    2<%= radio_button_tag 'rating', '2' %>
-    3<%= radio_button_tag 'rating', '3' %>
-    4<%= radio_button_tag 'rating', '4' %>
-    5<%= radio_button_tag 'rating', '5' %>
+    1 <%= radio_button_tag 'rating', '1' %>
+    2 <%= radio_button_tag 'rating', '2' %>
+    3 <%= radio_button_tag 'rating', '3' %>
+    4 <%= radio_button_tag 'rating', '4' %>
+    5 <%= radio_button_tag 'rating', '5' %>
     <%= submit_tag 'Post Review' %>
 
   <% end %>
 <% end %>
+</div>
+</div>
+</div>
   <br>
 
 <%= link_to "Back to Your Profile", current_user %>

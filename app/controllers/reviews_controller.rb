@@ -10,7 +10,7 @@ class ReviewsController < ApplicationController
     if params[:user_id].to_i == @user_favor.requester_id || params[:user_id].to_i == @user_favor.requestee_id && !already_exists?  && @review.save
       redirect_to @review.favor
     else
-      flash[:notice] = "Your review could not be posted. Only those directly involved in a Favr can post a review. If you were involved in this Favr, please make sure that your review body and rating are not empty before posting your review."
+      flash[:notice] = "Your review could not be posted. Only those directly involved in a Favr can post a review. If you were involved in this Favr, please make sure that your review body and rating are not empty before posting your review. One review per person, per favor, please."
       redirect_to favor_path(@favor)
     end
   end
