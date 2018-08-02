@@ -25,7 +25,7 @@
   <% end %>
 </ul>
 <hr>
-<h3><%= @user.first_name %>'s Favrability rating: <%= @user.average_rating %>/5</h3>
+<h3><%= @user.first_name %>'s Favrability rating: <%= @user.average_rating %></h3>
 
 <ul>
   <% @user.all_reviews_of_user.each do |review| %>
@@ -37,9 +37,6 @@
   <% end %>
 </ul>
 
-<p><%= link_to "Edit your profile", edit_user_path %></p>
-
-
-<%= form_tag controller: "sessions", action: "destroy", method: "post" do %>
-  <input type="submit" value="Log Out">
+<% if @user.id == session[:logged_in_user] %>
+  <p><%= link_to "Edit your profile", edit_user_path %></p>
 <% end %>

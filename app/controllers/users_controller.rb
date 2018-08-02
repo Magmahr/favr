@@ -13,6 +13,8 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
+    @user.first_name.capitalize!
+    @user.last_name.capitalize!
     if @user.save
       flash[:notice] = "Signup successful! Welcome, #{@user.first_name}"
       session[:logged_in_user] = @user.id

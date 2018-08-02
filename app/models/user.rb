@@ -51,7 +51,8 @@ class User < ApplicationRecord
 
   def average_rating
     if all_ratings_of_user.count > 0
-      (all_ratings_of_user.sum / all_ratings_of_user.size.to_f).round(2)
+      rating = (all_ratings_of_user.sum / all_ratings_of_user.size.to_f).round(2)
+      "#{rating}/5"
     else
       "0.0 (This user does not have any reviews yet)"
     end

@@ -1,16 +1,12 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+j = User.create!(first_name: "Jared", last_name: "Mills", email: "jared@gmail.com", password:'12345')
+m = User.create!(first_name: "Matt", last_name: "Maher", email: "matt@gmail.com", password:'steve')
+bob = User.create!(first_name: "Bob", last_name: "Barker", email: "bob@gmail.com", password:'12345')
+kanye = User.create!(first_name: "Kanye", last_name: "West", email: "yeezy@gmail.com", password:'12345')
+donald = User.create!(first_name: "Donald", last_name: "Trump", email: "treason4lyfe@gmail.com", password:'12345')
+stevie = User.create!(first_name: "Stevie", last_name: "Nix", email: "fleetwood@gmail.com", password:'12345')
 
 
-j = User.create(first_name: "Jared", last_name: "Test", email: "jared@gmail.com", password:'michael')
-m = User.create(first_name: "Matt", last_name: "Testo", email: "ugho@gmail.com", password:'steve')
-
-f = Favor.create(name: "Walk Dog", description: "walk my dog", date: Time.now , requester_id: 1)
+f = Favor.create(name: "Walk Dog", description: "walk my dog while I'm at work today", date: Time.now + 60, requester_id: 1)
 
 r = Review.create(title: "TERRIBLE", content: "Unreliable at best", rating: 0, favor_id: 1, user_id: 2)
 
