@@ -22,4 +22,31 @@ class User < ApplicationRecord
     accepted_user_favors.map {|user_favor| user_favor.favor}
   end
 
+  def all_favors
+    all_user_favors = UserFavor.select {|user_favor| user_favor.requestee_id == self.id || user_favor.requester_id == self.id}
+    all_user_favors.map {|user_favor| user_favor.favor}
+  end
+
+  def all_favors_ids
+    all_favors.map {|favor| favor.id}
+  end
+
+  def all_reviews_of_user
+    Review.all.select do |review|
+      all_favors_ids.include?(review.favor_id) && review.user_id != self.id
+    end
+  end
+
+  def all_ratings_of_user
+    all_reviews_of_user.map {|review| review.rating}
+  end
+
+  def average_rating
+    if all_ratings_of_user.count > 0
+      (all_ratings_of_user.sum / all_ratings_of_user.size.to_f).round(2)
+    else
+      "0.0 (This user does not have any reviews yet)"
+    end
+  end
+
 end

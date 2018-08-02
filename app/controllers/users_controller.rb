@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :new, :create, :edit]
   # before_action :require_login
-  skip_before_action :authorized, only: [:new, :create]
+  skip_before_action :authorized, only: [:new, :create, :show]
 
   def show
     render :show
@@ -40,7 +40,8 @@ class UsersController < ApplicationController
   private
 
   def set_user
-    @user = User.find_by(id: session[:logged_in_user])
+    # @user = User.find_by(id: session[:logged_in_user])
+    @user = User.find_by(id: params[:id])
   end
 
   def user_params
