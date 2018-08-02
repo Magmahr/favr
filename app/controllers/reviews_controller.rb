@@ -6,7 +6,7 @@ class ReviewsController < ApplicationController
     @favor = Favor.find(favor_id)
     @user_favor = UserFavor.find_by(favor_id: params[:favor_id].to_i)
     @review = Review.new(review_params)
-  
+
     if params[:user_id].to_i == @user_favor.requester_id || params[:user_id].to_i == @user_favor.requestee_id && !already_exists?  && @review.save
       redirect_to @review.favor
     else
