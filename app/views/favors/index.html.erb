@@ -1,20 +1,32 @@
-<h1>FAVRS</h1>
+<h1 class="text-center">FAVRS</h1>
 
-<h1>Some Favrs need doing:</h1>
-<ul>
-  <% Favor.unselected_favors.each do |unselected_favor| %>
-  <li>
-    <%= link_to unselected_favor.name, unselected_favor %>
-  </li>
-  <% end %>
-</ul>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h2>Undone Favrs</h2>
+      <ul>
+        <% Favor.unselected_favors.each do |unselected_favor| %>
+        <li>
+          <%= link_to unselected_favor.name, unselected_favor %>
+        </li>
+        <% end %>
+      </ul>
+    </div>
 
-<h1>Old Favrs</h1>
-<% @favors.each do |favor|%>
-<%= link_to favor.name, favor %> <br>
+  <div class="col-4"></div>
 
-
-<% end %>
+    <div class="col">
+      <h2>Old Favrs</h2>
+      <ul>
+        <% @favors.selected_favors.each do |favor|%>
+          <li>
+            <%= link_to favor.name, favor %> <br>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>
 <br>
 <br>
 <p><%= link_to "See your page", @user %></p>

@@ -22,6 +22,13 @@ class Favor < ApplicationRecord
     end
   end
 
+  def self.selected_favors
+    user_favor_favor_ids = UserFavor.all.map {|user_favor| user_favor.favor_id}
+    self.all.select do |favor|
+      user_favor_favor_ids.any? {|favor_id| favor_id == favor.id}
+    end
+  end
+
   def parsed_datetime
     self.date.strftime("%B %d, %Y at %H:%M")
   end
