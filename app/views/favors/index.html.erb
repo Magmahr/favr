@@ -1,8 +1,9 @@
-<h1 class="text-center">FAVRS</h1>
-
+<!-- <h1 class="text-center">FAVRS</h1> -->
+<br>
+<br>
 <div class="container">
-  <div class="row">
-    <div class="col">
+  <div class="row justify-content-md-center">
+    <div class="col col-lg-4">
       <h2>Undone Favrs</h2>
       <ul>
         <% Favor.unselected_favors.each do |unselected_favor| %>
@@ -13,9 +14,9 @@
       </ul>
     </div>
 
-  <div class="col-4"></div>
+  <div class="col-md-auto"></div>
 
-    <div class="col">
+    <div class="col col-lg-4">
       <h2>Old Favrs</h2>
       <ul>
         <% @favors.selected_favors.each do |favor|%>

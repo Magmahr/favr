@@ -3,7 +3,8 @@ m = User.create!(first_name: "Matt", last_name: "Maher", email: "matt@gmail.com"
 bob = User.create!(first_name: "Bob", last_name: "Barker", email: "bob@gmail.com", password:'12345')
 kanye = User.create!(first_name: "Kanye", last_name: "West", email: "yeezy@gmail.com", password:'12345')
 donald = User.create!(first_name: "Donald", last_name: "Trump", email: "treason4lyfe@gmail.com", password:'12345')
-stevie = User.create!(first_name: "Stevie", last_name: "Nix", email: "fleetwood@gmail.com", password:'12345')
+barak = User.create!(first_name: "Barak", last_name: "Obama", email: "bobama@gmail.com", password:'12345')
+stevie = User.create!(first_name: "Stevie", last_name: "Nix", email: "stevie@gmail.com", password:'12345')
 
 
 f = Favor.create(name: "Walk Dog", description: "walk my dog while I'm at work today", date: Time.now + 60, requester_id: 1)
