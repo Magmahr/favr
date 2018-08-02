@@ -1,11 +1,13 @@
-<h1>LOGIN</h1>
-
 <h3><%= flash[:notice] %></h3>
 
+<h1>Login</h1>
+<br>
 <%= form_tag "/login", method: :post do %>
-  Email:<%= text_field_tag :email %>
-  Password:<%= password_field_tag :password %>
-  <input type='submit' value='login'>
+  <%= label_tag :email %>
+  <%= text_field_tag :email %>
+  <%= label_tag :password %>
+  <%= password_field_tag :password %>
+  <input type='submit' value='Login'>
 <% end %>
-
-<h4>Not a member? Sign up <%= link_to "here", new_user_path %></h4>
+<br>
+<h6>Not a member? Sign up <%= link_to "here", new_user_path %></h6>
