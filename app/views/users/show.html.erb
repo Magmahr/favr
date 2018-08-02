@@ -1,7 +1,6 @@
 <p id="notice"><%= notice %></p>
 
 <h1><%= @user.first_name %>'s Page</h1>
-<p><%= @user.first_name %>'s Favrability rating: <%= @user.average_rating %>/5</p>
 
 <p><%= link_to "Do someone a Favr", favors_path %></p>
 
@@ -12,6 +11,28 @@
   <% @user.accepted_favors.each do |favor| %>
     <li>
       <%= link_to favor.name, favor %>
+    </li>
+  <% end %>
+</ul>
+
+<h3>These are the Favrs that <%= @user.first_name %> has requested:</h3>
+<ul>
+  <% @user.users_owed.each do |user| %>
+  <%  %>
+    <li>
+      <%= link_to user.first_name, user %> did you a Favr, maybe do one in return
+    </li>
+  <% end %>
+</ul>
+<hr>
+<h3><%= @user.first_name %>'s Favrability rating: <%= @user.average_rating %>/5</h3>
+
+<ul>
+  <% @user.all_reviews_of_user.each do |review| %>
+    <li>
+      <%= link_to review.user.first_name, review.user %> says about <%= @user.first_name%>
+      : "<%= review.content %>"  <br>
+       Rating: <%= review.rating %>/5
     </li>
   <% end %>
 </ul>

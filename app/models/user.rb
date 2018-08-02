@@ -37,6 +37,14 @@ class User < ApplicationRecord
     end
   end
 
+  def requested_favors_accepted
+    UserFavor.select {|user_favor| user_favor.requester_id == self.id}
+  end
+
+  def users_owed
+    requested_favors_accepted.map {|userfavor| userfavor.requestee}
+  end
+
   def all_ratings_of_user
     all_reviews_of_user.map {|review| review.rating}
   end
