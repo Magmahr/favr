@@ -1,12 +1,6 @@
 <h1>FAVRS</h1>
 
-<% @favors.each do |favor|%>
-<%= link_to favor.name, favor %> <br>
-
-
-<% end %>
-
-<h1>unselected favors:</h1>
+<h1>Some Favrs need doing:</h1>
 <ul>
   <% Favor.unselected_favors.each do |unselected_favor| %>
   <li>
@@ -15,4 +9,12 @@
   <% end %>
 </ul>
 
+<h1>Old Favrs</h1>
+<% @favors.each do |favor|%>
+<%= link_to favor.name, favor %> <br>
+
+
+<% end %>
+<br>
+<br>
 <p><%= link_to "See your page", @user %></p>
