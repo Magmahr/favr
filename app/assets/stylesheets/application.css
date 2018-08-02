@@ -13,3 +13,7 @@ a {
        color: #aeff8b;
      }
 }
+
+#indent-email-field {
+  margin-left: 1%
+}
