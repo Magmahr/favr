@@ -1,12 +1,23 @@
 <!-- <h1 class="text-center">FAVRS</h1> -->
 <br>
 <br>
+<%= form_tag favors_path, method: :get do %>
+  <%= text_field_tag(
+      :search,
+      params[:search],
+      placeholder: "Search for Favrs",
+  ) %>
+  <%= submit_tag "Search" %>
+<% end %>
+
+<br>
+<br>
 <div class="container">
   <div class="row justify-content-md-center">
     <div class="col col-lg-4">
       <h2>Undone Favrs</h2>
       <ul>
-        <% Favor.unselected_favors.each do |unselected_favor| %>
+        <% @unselected_favors.each do |unselected_favor| %>
         <li>
           <%= link_to unselected_favor.name, unselected_favor %>
         </li>
@@ -19,7 +30,7 @@
     <div class="col col-lg-4">
       <h2>Old Favrs</h2>
       <ul>
-        <% @favors.selected_favors.each do |favor|%>
+        <% @selected_favors.each do |favor|%>
           <li>
             <%= link_to favor.name, favor %> <br>
           </li>

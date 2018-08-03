@@ -3,8 +3,15 @@ class FavorsController < ApplicationController
   before_action :require_login
 
   def index
-    @favors = Favor.all
+    # @favors = Favor.all
+    @selected_favors = Favor.selected_favors
+    @unselected_favors = Favor.unselected_favors
     @user = User.find_by(id: session[:logged_in_user])
+    if params[:search]
+      @selected_favors = @selected_favors.select {|favor| favor.name.downcase.include?(params[:search].downcase)}
+      @unselected_favors = @unselected_favors.select {|favor| favor.name.downcase.include?(params[:search].downcase)}
+      render :index
+    end
   end
 
   def show
