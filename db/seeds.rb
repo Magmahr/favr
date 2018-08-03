@@ -1,4 +1,4 @@
-j = User.create!(first_name: "Jared", last_name: "Mills", email: "jared@gmail.com", password:'12345')
+sj = User.create!(first_name: "Jared", last_name: "Mills", email: "jared@gmail.com", password:'12345')
 
 m = User.create!(first_name: "Matt", last_name: "Maher", email: "matt@gmail.com", password:'steve')
 

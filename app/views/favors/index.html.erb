@@ -1,6 +1,6 @@
-<!-- <h1 class="text-center">FAVRS</h1> -->
 <br>
 <br>
+
 <%= form_tag favors_path, method: :get do %>
   <%= text_field_tag(
       :search,
@@ -12,6 +12,7 @@
 
 <br>
 <br>
+
 <div class="container">
   <div class="row justify-content-md-center">
     <div class="col col-lg-4">
@@ -39,6 +40,8 @@
     </div>
   </div>
 </div>
+
 <br>
 <br>
+
 <p><%= link_to "See your page", @user %></p>

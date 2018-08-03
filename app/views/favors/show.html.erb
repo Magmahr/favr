@@ -10,12 +10,13 @@
 
 <h4><%= flash[:notice] %></h4>
 
-  <h1 class="text-center"><%= link_to @user.first_name, @user %> needs a Favr</h1>
-  <% if user_favor = UserFavor.find_by(favor_id: @favor.id) %>
-    <h6 class="text-center"><%= link_to user_favor.requestee.first_name, user_favor.requestee %> has agreed to do this Favr</h6>
-  <% end %>
+<h1 class="text-center"><%= link_to @user.first_name, @user %> needs a Favr</h1>
 
-  <hr width="30%">
+<% if user_favor = UserFavor.find_by(favor_id: @favor.id) %>
+  <h6 class="text-center"><%= link_to user_favor.requestee.first_name, user_favor.requestee %> has agreed to do this Favr</h6>
+<% end %>
+
+<hr width="30%">
 
 <br>
 
@@ -35,30 +36,35 @@
 </div>
 
 <hr width="30%">
-<!-- <br> -->
-<!-- <br> -->
+
 <br>
 
 <div class="container">
   <div class="row">
   <div class="col">
-<% if UserFavor.any? {|user_favor| user_favor.favor_id == @favor.id} %>
-  <h2>Comments</h2>
-  <% @favor.comments.each do |comment| %>
-    <%= link_to comment.user.first_name, comment.user %> says "<%= comment.content %>"
-  <br>
-  <% end  %>
-  <br>
-  <%= form_tag post_comment_path, method: :post do %>
-    <%= hidden_field_tag 'user_id', session[:logged_in_user]  %>
-    <%= hidden_field_tag 'favor_id', @favor.id  %>
-    <%= text_area_tag 'content', nil, placeholder: "Write your comment here" %>
-    <br>
-    <%= submit_tag 'Post Comment' %>
-  <% end %>
-<% end %>
+    <% if UserFavor.any? {|user_favor| user_favor.favor_id == @favor.id} %>
+      <h2>Comments</h2>
+      <% @favor.comments.each do |comment| %>
+        <%= link_to comment.user.first_name, comment.user %> says "<%= comment.content %>"
+
+      <br>
+
+      <% end  %>
+
+      <br>
+
+      <%= form_tag post_comment_path, method: :post do %>
+        <%= hidden_field_tag 'user_id', session[:logged_in_user]  %>
+        <%= hidden_field_tag 'favor_id', @favor.id  %>
+        <%= text_area_tag 'content', nil, placeholder: "Write your comment here" %>
+        <br>
+        <%= submit_tag 'Post Comment' %>
+      <% end %>
+    <% end %>
+
 <br>
 <br>
+
 </div>
 
 <div class="col-6"></div>
@@ -73,32 +79,41 @@
     <%= link_to review.user.first_name, review.user %> claims "<%= review.content %>"
     <br>
     <b>Rating:</b> <%= review.rating %>/5
-  <br><br>
+
+  <br>
+  <br>
+
   <% end  %>
+
   <br>
 
-  <%= form_tag post_review_path, method: :post do %>
-    <%= hidden_field_tag 'user_id', session[:logged_in_user]  %>
-    <%= hidden_field_tag 'favor_id', @favor.id  %>
-    <%= text_field_tag "title", nil, placeholder: "Review Title"%>
-    <%= text_area_tag 'content', nil, placeholder: "Write your review here" %>
+      <%= form_tag post_review_path, method: :post do %>
+        <%= hidden_field_tag 'user_id', session[:logged_in_user]  %>
+        <%= hidden_field_tag 'favor_id', @favor.id  %>
+        <%= text_field_tag "title", nil, placeholder: "Review Title"%>
+        <%= text_area_tag 'content', nil, placeholder: "Write your review here" %>
 
-    <br>
-    <b><p>Rating</p></b>
-    1 <%= radio_button_tag 'rating', '1' %>
-    2 <%= radio_button_tag 'rating', '2' %>
-    3 <%= radio_button_tag 'rating', '3' %>
-    4 <%= radio_button_tag 'rating', '4' %>
-    5 <%= radio_button_tag 'rating', '5' %>
-    <%= submit_tag 'Post Review' %>
+        <br>
 
-  <% end %>
-<% end %>
+        <b><p>Rating</p></b>
+        1 <%= radio_button_tag 'rating', '1' %>
+        2 <%= radio_button_tag 'rating', '2' %>
+        3 <%= radio_button_tag 'rating', '3' %>
+        4 <%= radio_button_tag 'rating', '4' %>
+        5 <%= radio_button_tag 'rating', '5' %>
+        <%= submit_tag 'Post Review' %>
+
+      <% end %>
+    <% end %>
+
+    </div>
+  </div>
 </div>
-</div>
-</div>
-  <br>
+
+<br>
 
 <%= link_to "Back to Your Profile", current_user %>
+
 <br>
+
 <%= link_to "Back to All Favrs", favors_path %>
