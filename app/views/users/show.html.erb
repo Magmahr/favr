@@ -11,30 +11,29 @@
 <div class="container">
   <div class="row">
     <div class="col">
-<h3>Favrs <%= @user.first_name %> is doing</h3>
-<ul>
-  <% @user.accepted_favors.each do |favor| %>
-    <li>
-      <%= link_to favor.name, favor %>
-    </li>
-  <% end %>
-</ul>
-</div>
+      <h3>Favrs <%= @user.first_name %> is doing</h3>
+      <ul>
+        <% @user.accepted_favors.each do |favor| %>
+          <li>
+            <%= link_to favor.name, favor %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
 
 <!-- <hr width="30%"> -->
-<div class="col"></div>
+    <div class="col"></div>
 
-<div class="col">
-<h3><%= @user.first_name %>'s requested Favrs</h3>
-<ul>
-  <% @user.users_owed.each do |user| %>
-  <li >
-    <%= link_to user.first_name, user %> did you a Favr, maybe do one in return
-  </li>
-  <% end %>
-</ul>
-
-  </div>
+    <div class="col">
+      <h3><%= @user.first_name %>'s requested Favrs</h3>
+      <ul>
+        <% @user.users_owed.each do |user| %>
+        <li >
+          <%= link_to user.first_name, user %> did you a Favr, maybe do one in return
+        </li>
+        <% end %>
+      </ul>
+    </div>
   </div>
 </div>
 
@@ -43,17 +42,25 @@
 
 <hr width="30%">
 
-<h3><%= @user.first_name %>'s Favrability rating:</h3>
-<h3><%= @user.average_rating %></h3>
-<ul>
-  <% @user.all_reviews_of_user.each do |review| %>
-    <li>
-      <%= link_to review.user.first_name, review.user %> says about <%= @user.first_name%>
-      : "<%= review.content %>"  <br>
-       Rating: <%= review.rating %>/5
-    </li>
-  <% end %>
-</ul>
+
+<div class="container">
+  <div class="row">
+    <div class="col"></div>
+    <div class="col">
+      <h3><%= @user.first_name %>'s Favrability rating:</h3>
+      <h3><%= @user.average_rating %></h3>
+      <ul>
+        <% @user.all_reviews_of_user.each do |review| %>
+          <li>
+            <%= link_to review.user.first_name, review.user %> says about <%= @user.first_name%>
+            : "<%= review.content %>"  <br>
+             Rating: <%= review.rating %>/5
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  <div class="col"></div></div>
+</div>
 
 
 <% if @user.id == session[:logged_in_user] %>

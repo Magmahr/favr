@@ -10,7 +10,7 @@ class ReviewsController < ApplicationController
       if  !already_exists? && @review.save
       redirect_to @review.favor
       else
-        flash[:notice] = "Please make sure that your review body and rating are not empty before posting your review. One review per person, per favor, please."
+        flash[:notice] = "Please make sure that your review title, body, and rating are not empty before posting your review. You may only write one review per favor."
       end
     else
       flash[:notice] = "Your review could not be posted. Only those directly involved in a Favr can post a review."
