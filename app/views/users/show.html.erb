@@ -1,12 +1,17 @@
 <p id="notice"><%= notice %></p>
+<%= link_to "Do someone a Favr", favors_path %>
+<br>
+<%= link_to "Ask for a Favr", new_favor_path %>
 
-<h1><%= @user.first_name %>'s Page</h1>
 
-<p><%= link_to "Do someone a Favr", favors_path %></p>
+<h1 class="text-center"><%= @user.first_name %>'s Page</h1>
+<hr width="30%">
 
-<p><%= link_to "Ask for a Favr", new_favor_path %></p>
 
-<h3>These are the Favrs that <%= @user.first_name %> has agreed to do:</h3>
+<div class="container">
+  <div class="row">
+    <div class="col">
+<h3>Favrs <%= @user.first_name %> is doing</h3>
 <ul>
   <% @user.accepted_favors.each do |favor| %>
     <li>
@@ -14,19 +19,32 @@
     </li>
   <% end %>
 </ul>
+</div>
 
-<h3>These are the Favrs that <%= @user.first_name %> has requested:</h3>
+<!-- <hr width="30%"> -->
+<div class="col"></div>
+
+<div class="col">
+<h3><%= @user.first_name %>'s requested Favrs</h3>
 <ul>
   <% @user.users_owed.each do |user| %>
-  <%  %>
-    <li>
-      <%= link_to user.first_name, user %> did you a Favr, maybe do one in return
-    </li>
+  <li >
+    <%= link_to user.first_name, user %> did you a Favr, maybe do one in return
+  </li>
   <% end %>
 </ul>
-<hr>
-<h3><%= @user.first_name %>'s Favrability rating: <%= @user.average_rating %></h3>
 
+  </div>
+  </div>
+</div>
+
+
+
+
+<hr width="30%">
+
+<h3><%= @user.first_name %>'s Favrability rating:</h3>
+<h3><%= @user.average_rating %></h3>
 <ul>
   <% @user.all_reviews_of_user.each do |review| %>
     <li>
@@ -36,6 +54,7 @@
     </li>
   <% end %>
 </ul>
+
 
 <% if @user.id == session[:logged_in_user] %>
   <p><%= link_to "Edit your profile", edit_user_path %></p>

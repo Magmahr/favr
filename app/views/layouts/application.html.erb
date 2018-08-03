@@ -15,7 +15,10 @@
     <br>
     <p></p>
     <div class="p-3 mb-2 bg-success text-white">
-      <%= image_tag 'favrsmall2.png' %>
+      <%= link_to root_path do %>
+        <%= image_tag 'favrsmall2.png' %>
+      <% end %>
+
 
     <%= yield %>
 

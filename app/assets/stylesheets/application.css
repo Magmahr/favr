@@ -14,6 +14,6 @@ a {
      }
 }
 
-#indent-email-field {
-  margin-left: 1%
+.limit-width {
+  max-width: 30%;
 }
